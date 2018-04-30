@@ -32,7 +32,7 @@ person.age
 person.neme
 
 let  item = ("ジュース", 100, 0.08, 108)
-//print("商品名＝\(item.0), 税抜き価格=\(item.1)円, 消費税\(item.2 * 100) ")
+print("商品名＝\(item.0), 税抜き価格=\(item.1)円, 消費税\(item.2 * 100) ")
 
 //オプショナル
 //Swiftでnilを代入可能にする
@@ -42,18 +42,18 @@ let  item = ("ジュース", 100, 0.08, 108)
 //ラッピング(中身が見えないようにする)⇄アンラッピング(中身が見えるようにする)
 var value : String?         //OptionalのString型変数の宣言
 value = "こんにちは"          //値の設定
-//print(value)                //「Optional（"こんにちは"）」というアンラップ前の値が出力されてしまう
+print(value)                //「Optional（"こんにちは"）」というアンラップ前の値が出力されてしまう
 if let value = value {  //アンラップ処理
-    //print(value)            //「こんにちは」というアンラップ後の値が出力される
+    print(value)            //「こんにちは」というアンラップ後の値が出力される
 }
 
 //変数の省略バージョン
 if let _ = value {
-    //print("valueはnilではない")
+    print("valueはnilではない")
 }
 
 if let unwrappedValue = value {
-    //print(unwrappedValue)
+    print(unwrappedValue)
 }
 
 //関数
@@ -62,14 +62,14 @@ func showTestScore(mathTestScore: Int) -> String {
     return "数学の点数は\(mathTestScore)点"
 }
 
-//print(showTestScore(mathTestScore: 98))
+print(showTestScore(mathTestScore: 98))
 
 //引数名の省略
 func addValue(_ mathTestScore: Int) -> String {
     return "数学の点数は\(mathTestScore)点"
 }
 
-//print(addValue(98))
+print(addValue(98))
 
 //エラーの宣言
 enum MyError: Error {
@@ -86,9 +86,9 @@ func doubleUp(value: Int) throws -> Int {
 
 do {
     var doubleResultValue = try doubleUp(value: 10)
-    //print("")
+    print("正常終了")
 } catch MyError.InvalidValue {
-    //print("")
+    print("エラー発生")
 }
 
 //クラス
@@ -99,7 +99,7 @@ radio.isOn = true
 class Dog{
     var name = ""
     func bark(){
-        //print("私は\(name)です")
+        print("私は\(name)です")
     }
 }
 
@@ -111,7 +111,7 @@ class GuideDog: Dog {
     override func bark() {
         //継承元のクラスのbarkメソッドが呼び出される
         super.bark()
-        //print("ワンワン")
+        print("ワンワン")
     }
 }
 
@@ -152,27 +152,35 @@ var nameOfIntegers = [Int:String]()
 
 
 
-/// 課題（4/21）
+/// 以下、課題（4/21）です。
 
-class Pair {
+class Human {
     
     /// letは定数、varは変数
-    let fuhen = "定数"
+    let message = "該当者なし"
     
-    //let items = [0:"零", 1:"壱", 2:"弐"]
-    var items = [Int:String]()
+    var items = [000000:"田中", 000001:"佐藤", 000002:"高橋"]
     
-    /// 対応する漢数字を返すメソッド
+    /// 情報の設定メソッド
     ///
-    /// - Parameter value: 数字
-    /// - Returns: 漢数字
-    func getPair(_ value: Int) -> String {
-        for (intValue, strValue) in items {
-            if value == intValue {
-                return strValue
+    /// - Parameters:
+    ///   - number: 番号
+    ///   - name: 名前
+    func setInformation(number: Int, name: String) {
+        items[number] = name;
+    }
+    
+    /// 番号から名前を返すメソッド
+    ///
+    /// - Parameter value: 番号
+    /// - Returns: 名前
+    func getNameFromNumber(_ value: Int) -> String {
+        for (number, name) in items {
+            if value == number {
+                return name
             }
         }
-        return "該当なし"
+        return message
     }
     
     /// タプルを返すメソッド
@@ -184,30 +192,48 @@ class Pair {
         return (name: "name", age: 20, height: 180.25)
     }
     
-    
     ///
     /// Optional型：変数にnilの代入を許容する
-    ///
-    func isOptional() {
-        var optValue: Int?
-//        optValue = 0
+    /// !…Implicitly Unwrapped Optional型
+    /// ?…Optional型
+    /// 条件節に記述した条件が成立しなかった場合にelse節が実行されて、コードブロックから抜ける。 また、条件節にオプショナル束縛を記述した場合、そこで利用した変数や定数をguard文の後続の文で利用可能。
+    func isOptional(optValue: String?) -> Bool {
+        /// オプショナル束縛(Optional Binding)
         if let _ = optValue {
-            print("not nil")
+            return true
         } else {
-            optValue!
-            optValue = 0
+            return false
         }
+    }
+
+    /// guard文
+    ///
+    /// - Parameter a: <#a description#>
+    func a(a: String?) throws {
+        guard let a = a else {
+            throw SampleError.InvalidValue
+        }
+        print("\(a)")
+    }
+    
+    // エラータイプの定義
+    enum SampleError: Error {
+        case InvalidValue
     }
     
 }
 
-var p = Pair()
-p.items[0] = "零"
-p.items[1] = "壱"
-p.items[2] = "弐"
+var p = Human()
+p.setInformation(number: 201487, name: "内田")
 
-print(p.getPair(1))
+print(p.getNameFromNumber(201487))
 print(p.getTuple().name)
 print(p.getTuple().age)
 print(p.getTuple().height)
-
+var v : String?
+print(p.isOptional(optValue: v))
+do {
+    print(try p.a(a: v))
+} catch Human.SampleError.InvalidValue {
+ print("エラー発生")
+}
