@@ -152,88 +152,100 @@ var nameOfIntegers = [Int:String]()
 
 
 
-/// 以下、課題（4/21）です。
+/// 以下、4/21の課題です。
 
-class Human {
+class PersonData {
     
     /// letは定数、varは変数
-    let message = "該当者なし"
+    let noData = "該当者なし"
     
-    var items = [000000:"田中", 000001:"佐藤", 000002:"高橋"]
+    /// Tuple
+    var tplInfo0 = (0, "田中", 20, 180.5)
+    var tplInfo1 = (1, "佐藤", 23, 160.3)
+    var tplInfo2 = (2, "高橋", 21, 154.2)
+
+    /// Dictionary
+    var dicInfo = [0:"田中", 1:"佐藤", 2:"高橋"]
     
-    /// 情報の設定メソッド
-    ///
-    /// - Parameters:
-    ///   - number: 番号
-    ///   - name: 名前
-    func setInformation(number: Int, name: String) {
-        items[number] = name;
-    }
+    /// message格納変数
+    var message: String?
     
     /// 番号から名前を返すメソッド
     ///
-    /// - Parameter value: 番号
+    /// - Parameter idx: 番号
     /// - Returns: 名前
-    func getNameFromNumber(_ value: Int) -> String {
-        for (number, name) in items {
-            if value == number {
+    func getNameFromNumber(_ idx: Int) -> String {
+        for (number, name) in dicInfo {
+            if idx == number {
                 return name
             }
         }
-        return message
+        return noData
     }
     
-    /// タプルを返すメソッド
+    /// 番号から情報（タプル）を返すメソッド
+    /// 番号が対象外の場合はエラーをスローする
     /// タプル：色々な型の複数の値を一つとしてまとめられる
     /// 使い方：関数の戻り値として使用することが多い
     ///
+    /// - Parameter idx: 番号
     /// - Returns: 名前、年齢、身長
-    func getTuple() -> (name: String, age: Int, height: Float) {
-        return (name: "name", age: 20, height: 180.25)
+    func getPersonalInfo(idx: Int) throws -> (name: String, age: Int, height: Double) {
+        if idx == tplInfo0.0 {
+            return (name: tplInfo0.1, age: tplInfo0.2, height: tplInfo0.3)
+        } else if idx == tplInfo1.0 {
+            return (name: tplInfo1.1, age: tplInfo1.2, height: tplInfo1.3)
+        } else if idx == tplInfo2.0 {
+            return (name: tplInfo2.1, age: tplInfo2.2, height: tplInfo2.3)
+        }
+        throw PersonalError.InvalidValue
     }
     
-    ///
+    /// アンラップされている場合にメッセージを返すメソッド
     /// Optional型：変数にnilの代入を許容する
     /// !…Implicitly Unwrapped Optional型
     /// ?…Optional型
-    /// 条件節に記述した条件が成立しなかった場合にelse節が実行されて、コードブロックから抜ける。 また、条件節にオプショナル束縛を記述した場合、そこで利用した変数や定数をguard文の後続の文で利用可能。
-    func isOptional(optValue: String?) -> Bool {
+    /// 条件節に記述した条件が成立しなかった場合にelse節が実行されて、コードブロックから抜ける。
+    /// 条件節にオプショナル束縛を記述した場合、そこで利用した変数や定数をguard文の後続の文で利用可能。
+    func sayMessage() {
         /// オプショナル束縛(Optional Binding)
-        if let _ = optValue {
-            return true
-        } else {
-            return false
+        if let message = message {
+            print(message)
         }
-    }
-
-    /// guard文
-    ///
-    /// - Parameter a: <#a description#>
-    func a(a: String?) throws {
-        guard let a = a else {
-            throw SampleError.InvalidValue
-        }
-        print("\(a)")
     }
     
     // エラータイプの定義
-    enum SampleError: Error {
+    enum PersonalError: Error {
         case InvalidValue
     }
     
 }
 
-var p = Human()
-p.setInformation(number: 201487, name: "内田")
 
-print(p.getNameFromNumber(201487))
-print(p.getTuple().name)
-print(p.getTuple().age)
-print(p.getTuple().height)
-var v : String?
-print(p.isOptional(optValue: v))
+/// インスタンスの生成
+var pd = PersonData()
+/// メソッドの呼び出し　結果：高橋
+print(pd.getNameFromNumber(2))
+/// メソッドの呼び出し　結果：該当者なし
+print(pd.getNameFromNumber(3))
 do {
-    print(try p.a(a: v))
-} catch Human.SampleError.InvalidValue {
- print("エラー発生")
+    /// メソッドからの戻り値の格納
+    let p = try pd.getPersonalInfo(idx: 0)
+    /// 結果：田中さん　180.5cm　20歳
+    print("\(p.name)さん　\(p.height)cm　\(p.age)歳")
+    /// メソッドの呼び出し　結果：23歳
+    print("\(try pd.getPersonalInfo(idx: 1).age)歳")
+    /// メソッドの呼び出し　結果：154.2cm
+    print("\(try pd.getPersonalInfo(idx: 2).height)cm")
+    /// メソッドの呼び出し　結果：エラー発生：引数対象外
+    try pd.getPersonalInfo(idx: 5)
+} catch PersonData.PersonalError.InvalidValue {
+    /// エラー発生時の処理
+    print("エラー発生: 引数対象外")
 }
+/// メッセージの設定（試し）
+pd.message = nil
+/// メッセージの設定
+pd.message = "Hello World!!"
+/// メソッドの呼び出し　結果：Hello World!!
+pd.sayMessage()
