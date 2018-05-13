@@ -159,13 +159,22 @@ class PersonData {
     /// letは定数、varは変数
     let noData = "該当者なし"
     
-    /// Tuple
-    var tplInfo0 = (0, "田中", 20, 180.5)
-    var tplInfo1 = (1, "佐藤", 23, 160.3)
-    var tplInfo2 = (2, "高橋", 21, 154.2)
-
-    /// Dictionary
-    var dicInfo = [0:"田中", 1:"佐藤", 2:"高橋"]
+    /// Tupleの初期化
+    var tplInfo0: (Int, String, Int, Double)
+    var tplInfo1: (Int, String, Int, Double)
+    var tplInfo2: (Int, String, Int, Double)
+    
+    /// Dictionaryの初期化
+    var dicInfo = [Int : String]()
+    
+    /// イニシャライザ
+    init(id0: Int, name0: String, id1: Int, name1: String, id2: Int, name2: String) {
+        self.tplInfo0 = (id0, name0, 20, 180.5)
+        self.tplInfo1 = (id1, name1, 23, 160.3)
+        self.tplInfo2 = (id2, name2, 21, 154.2)
+        
+        self.dicInfo = [id0 : name0, id1 : name1, id2 : name2]
+    }
     
     /// message格納変数
     var message: String?
@@ -223,7 +232,7 @@ class PersonData {
 
 
 /// インスタンスの生成
-var pd = PersonData()
+var pd = PersonData(id0: 0, name0: "田中", id1: 1, name1: "佐藤", id2: 2, name2: "高橋")
 /// メソッドの呼び出し　結果：高橋
 print(pd.getNameFromNumber(2))
 /// メソッドの呼び出し　結果：該当者なし
