@@ -15,6 +15,8 @@ class SettingViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     @IBOutlet weak var pickerPriceTo: UIPickerView!
     @IBOutlet weak var switchAvailability: UISwitch!
     @IBOutlet weak var switchShipping: UISwitch!
+    @IBOutlet weak var switchPriceFrom: UISwitch!
+    @IBOutlet weak var switchPriceTo: UISwitch!
     
     let dataList = ["100","500","1000","2000","3000","4000","5000","10000","20000","30000"]
     
@@ -83,9 +85,17 @@ class SettingViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
                 // 検索キーワードの設定
                 userDefaults.set(keyword, forKey: "query")
                 // 最低価格の設定
-                userDefaults.set(priceFromValue, forKey: "priceFrom")
+                if switchPriceFrom.isOn {
+                    userDefaults.set(priceFromValue, forKey: "priceFrom")
+                } else {
+                    userDefaults.set("", forKey: "priceFrom")
+                }
                 // 最高価格の設定
-                userDefaults.set(priceFromValue, forKey: "priceTo")
+                if switchPriceTo.isOn {
+                    userDefaults.set(priceFromValue, forKey: "priceTo")
+                } else {
+                    userDefaults.set("", forKey: "priceTo")
+                }
                 // 在庫の設定
                 if switchAvailability.isOn {
                     userDefaults.set("1", forKey: "availability")

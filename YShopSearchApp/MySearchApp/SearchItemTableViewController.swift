@@ -108,7 +108,7 @@ class SearchItemTableViewController: UITableViewController, UISearchBarDelegate 
         itemDataArray.removeAll()
         
         // パラメータを指定する
-        var parameter = ["appid": appid, "query": inputText]
+        let parameter = ["appid": appid, "query": inputText]
 
         // パラメータをエンコードしたURLを作成する
         let requestUrl = createRequestUrl(parameter: parameter)
