@@ -1,27 +1,34 @@
 import UIKit
 
-class SearchItemTableViewController: UITableViewController, UISearchBarDelegate {
-
+class SearchItemTableViewController: UITableViewController, UISearchBarDelegate, UIGestureRecognizerDelegate {
+    
     var itemDataArray =  [ItemData]()
-
+    
     var imageCache = NSCache<AnyObject, UIImage>()
     @IBOutlet weak var keywordSearchBar: UISearchBar!
     
     // APIを利用するためのクライアントID
     let appid = "dj00aiZpPWw0SzRCekE2SmJCMSZzPWNvbnN1bWVyc2VjcmV0Jng9ZmY-"
-
-    let entryUrl: String = "https://shopping.yahooapis.jp/ShoppingWebService/V1/json/itemSearch"
-
+    
+    var entryUrl: String = "https://shopping.yahooapis.jp/ShoppingWebService/V1/json/itemSearch"
+    
     // 数字を金額の形式に整形するためのフォーマッター
     let priceFormat = NumberFormatter()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // 価格のフォーマット指定
         priceFormat.numberStyle = .currency
         priceFormat.currencyCode = "JPY"
-
+        
+        // ロングプレス
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(SearchItemTableViewController.longPress(_:)))
+        
+        longPressGesture.delegate = self
+        
+        // Viewに追加.
+        self.view.addGestureRecognizer(longPressGesture)
     }
     
     // ビューが表示される直前に呼ばれる
@@ -29,7 +36,7 @@ class SearchItemTableViewController: UITableViewController, UISearchBarDelegate 
         let userDefaults = UserDefaults.standard
         
         if let value = userDefaults.string(forKey: "search") {
-            if !value.isEmpty {
+            if value == "detail" {
                 // 詳細検索の開始
                 
                 // 保持している商品をいったん削除
@@ -79,47 +86,62 @@ class SearchItemTableViewController: UITableViewController, UISearchBarDelegate 
                 
                 // APIをリクエストする
                 request(requestUrl: requestUrl)
+                
+            } else if value == "category" {
+                // 保持している商品をいったん削除
+                itemDataArray.removeAll()
+                
+                entryUrl = "https://shopping.yahooapis.jp/ShoppingWebService/V1/json/categorySearch"
+                
+                // パラメータを指定する
+                let parameter = ["appid": appid, "category_id": "13457"]
+                
+                // パラメータをエンコードしたURLを作成する
+                let requestUrl = createRequestUrl(parameter: parameter)
+                
+                // APIをリクエストする
+                request(requestUrl: requestUrl)
             }
         }
         userDefaults.set("", forKey: "search")
         userDefaults.synchronize()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
+    
     // キーボードのsearchボタンがタップされたときに呼び出される
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-
+        
         // 入力された文字の取り出し
         guard let inputText = searchBar.text else {
             // 入力文字なし
             return
         }
-
+        
         // 入力文字数が0文字より多いかどうかチェックする
         guard inputText.lengthOfBytes(using: String.Encoding.utf8) > 0 else {
             // 0文字より多くはなかった
             return
         }
-
+        
         // 保持している商品をいったん削除
         itemDataArray.removeAll()
         
         // パラメータを指定する
         let parameter = ["appid": appid, "query": inputText]
-
+        
         // パラメータをエンコードしたURLを作成する
         let requestUrl = createRequestUrl(parameter: parameter)
-
+        
         // APIをリクエストする
         request(requestUrl: requestUrl)
-
+        
         // キーボードを閉じる
         searchBar.resignFirstResponder()
     }
-
+    
     // パラメータのURLエンコード処理
     func encodeParameter(key: String, value: String) -> String? {
         // 値をエンコードする
@@ -131,7 +153,7 @@ class SearchItemTableViewController: UITableViewController, UISearchBarDelegate 
         // エンコードした値をkey=valueの形式で返却する
         return "\(key)=\(escapedValue)"
     }
-
+    
     // URL作成処理
     func createRequestUrl(parameter: [String: String]) -> String {
         var parameterString = ""
@@ -149,16 +171,17 @@ class SearchItemTableViewController: UITableViewController, UISearchBarDelegate 
             // 値をエンコードする
             guard let encodeValue = encodeParameter(key: key, value: value)
                 else {
-                // エンコード失敗。次のfor文の処理を行う
-                continue
+                    // エンコード失敗。次のfor文の処理を行う
+                    continue
             }
             // エンコードした値をパラメータとして追加する
             parameterString += encodeValue
         }
         let requestUrl = entryUrl + "?" + parameterString
+        print("requestURL:" + requestUrl)
         return requestUrl
     }
-
+    
     // リクエストを行う
     func request(requestUrl: String) {
         // URL生成
@@ -190,17 +213,17 @@ class SearchItemTableViewController: UITableViewController, UISearchBarDelegate 
                 // データなし
                 return
             }
-
+            
             do {
                 // パース実施
                 let resultSet = try JSONDecoder().decode(ItemSearchResultSet.self, from: data)
                 // 商品のリストに追加
                 self.itemDataArray.append(contentsOf: resultSet.resultSet.firstObject.result.items)
-
+                
             } catch let error {
                 print("## error: \(error)")
             }
-
+            
             // テーブルの描画処理を実施
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -209,18 +232,18 @@ class SearchItemTableViewController: UITableViewController, UISearchBarDelegate 
         // 通信開始
         task.resume()
     }
-
+    
     // MARK: - Table view data source
     // テーブルのセクション数を取得
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
+    
     // セクション内の商品数を取得
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return itemDataArray.count
     }
-
+    
     // MARK: - Table view data source
     // テーブルセルの取得処理
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -255,7 +278,7 @@ class SearchItemTableViewController: UITableViewController, UISearchBarDelegate 
             // urlが生成できなかった
             return cell
         }
-
+        
         let request = URLRequest(url: url)
         let session = URLSession.shared
         let task = session.dataTask(with: request) { (data:Data?,
@@ -281,10 +304,10 @@ class SearchItemTableViewController: UITableViewController, UISearchBarDelegate 
         }
         // 画像の読み込み処理開始
         task.resume()
-
+        
         return cell
-     }
-
+    }
+    
     // 商品をタップして次の画面に遷移する前の処理
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let cell = sender as? ItemTableViewCell {
@@ -294,5 +317,33 @@ class SearchItemTableViewController: UITableViewController, UISearchBarDelegate 
                 webViewController.itemUrl = cell.itemUrl
             }
         }
-     }
+    }
+    
+    // Long Press イベント
+    @objc func longPress(_ sender: UILongPressGestureRecognizer){
+        // 押された位置でcellのPathを取得
+        let point = sender.location(in: tableView)
+        let indexPath = tableView.indexPathForRow(at: point)
+        
+        if indexPath == nil {
+            
+        } else if sender.state == UIGestureRecognizerState.began  {
+            // 長押しされた場合の処理
+            print("長押しされたcellのindexPath:\(String(describing: indexPath?.row))")
+            
+            let userDefaults = UserDefaults.standard
+            // お気に入りデータ
+            let data = FavoriteData()
+            let itemData = itemDataArray[(indexPath?.row)!]
+            
+            data.name = itemData.name
+            data.image = itemData.imageInfo.medium
+            data.price = itemData.priceInfo.price
+            data.url = itemData.url
+            
+            let archiveData = NSKeyedArchiver.archivedData(withRootObject: data)
+            userDefaults.set(archiveData, forKey: "favorite")
+            userDefaults.synchronize()
+        }
+    }
 }

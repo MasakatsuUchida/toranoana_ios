@@ -1,5 +1,5 @@
 //
-//  SettingViewController.swift
+//  DetailSearchViewController.swift
 //  MySearchApp
 //
 //  Created by systena on 2018/06/16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class DetailSearchViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     @IBOutlet weak var labelKeyword: UITextField!
     @IBOutlet weak var pickerPriceFrom: UIPickerView!
@@ -81,7 +81,7 @@ class SettingViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
             if keyword.count > 0 {
                 let userDefaults = UserDefaults.standard
                 // 詳細検索フラグ
-                userDefaults.set("set", forKey: "search")
+                userDefaults.set("detail", forKey: "search")
                 // 検索キーワードの設定
                 userDefaults.set(keyword, forKey: "query")
                 // 最低価格の設定

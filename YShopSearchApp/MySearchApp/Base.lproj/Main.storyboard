@@ -13,42 +13,39 @@
         <!--詳細検索-->
         <scene sceneID="F9H-zB-sj2">
             <objects>
-                <viewController id="jne-tr-JKe" customClass="SettingViewController" customModule="MySearchApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="jne-tr-JKe" customClass="DetailSearchViewController" customModule="MySearchApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="o3U-96-uSx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="　最低価格" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qdo-Vg-VzU">
-                                <rect key="frame" x="0.0" y="175" width="139" height="20.5"/>
-                                <color key="backgroundColor" red="0.98687764393238431" green="1" blue="0.76829763376140969" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <rect key="frame" x="0.0" y="175" width="375" height="20.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="87" id="GMB-My-otD"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" red="0.0" green="0.54434903489999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="　最高価格" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GWo-CS-maI">
-                                <rect key="frame" x="0.0" y="281" width="139" height="20.5"/>
-                                <color key="backgroundColor" red="0.98687764393238431" green="1" blue="0.76829763376140969" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <rect key="frame" x="0.0" y="281" width="375" height="20.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="87" id="1WK-6r-2P6"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" red="0.0" green="0.54434903489999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="GBd-y8-zW3">
                                 <rect key="frame" x="148" y="432.5" width="51" height="41.5"/>
                             </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="　送料" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dvQ-gb-afy">
-                                <rect key="frame" x="0.0" y="493" width="139" height="20.5"/>
-                                <color key="backgroundColor" red="0.98687764393238431" green="1" blue="0.76829763376140969" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <rect key="frame" x="0.0" y="493" width="375" height="20.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="87" id="gIK-7c-5oi"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" red="0.0" green="0.54434903489999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CmS-1t-BY0">
@@ -75,7 +72,7 @@
                                 </constraints>
                             </pickerView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="P9C-YB-NXX">
-                                <rect key="frame" x="10" y="117.5" width="119" height="30"/>
+                                <rect key="frame" x="10" y="117.5" width="355" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="25" id="pIM-IA-xzw"/>
                                 </constraints>
@@ -84,13 +81,12 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="　在庫" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jlR-Dd-RMm">
-                                <rect key="frame" x="0.0" y="387" width="139" height="20.5"/>
-                                <color key="backgroundColor" red="0.98687764393238431" green="1" blue="0.76829763376140969" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <rect key="frame" x="0.0" y="387" width="375" height="20.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="52" id="cI4-iI-7pc"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" red="0.0" green="0.54434903489999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="在庫ありのみ表示" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cez-n3-o7C">
@@ -143,12 +139,11 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="　検索キーワード" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="duL-fP-5Uv">
                                 <rect key="frame" x="0.0" y="77" width="139" height="36.5"/>
-                                <color key="backgroundColor" red="0.98687764393238431" green="1" blue="0.76829763376140969" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="87" id="bwf-Ie-dud"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" red="0.0" green="0.54434903487044695" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="i9b-Fb-VvE">
@@ -253,9 +248,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GX6-Gs-fqG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1652" y="-716.49175412293857"/>
+            <point key="canvasLocation" x="1306" y="3291"/>
         </scene>
-        <!--Yahoo! ショッピング-->
+        <!--通常検索-->
         <scene sceneID="MLP-Th-ftT">
             <objects>
                 <tableViewController id="Ngw-mA-s9h" customClass="SearchItemTableViewController" customModule="MySearchApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -330,7 +325,7 @@
                             <outlet property="delegate" destination="Ngw-mA-s9h" id="vKy-Xk-cWA"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Yahoo! ショッピング" id="3DQ-bA-Pj2">
+                    <navigationItem key="navigationItem" title="通常検索" id="3DQ-bA-Pj2">
                         <barButtonItem key="rightBarButtonItem" title="詳細検索" id="LFt-UB-sYd">
                             <connections>
                                 <segue destination="jne-tr-JKe" kind="push" id="e6V-fo-qBD"/>
@@ -343,7 +338,179 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fCk-c6-XRI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1652" y="132.68365817091455"/>
+            <point key="canvasLocation" x="708" y="2516"/>
+        </scene>
+        <!--カテゴリ検索-->
+        <scene sceneID="rSv-Em-HMH">
+            <objects>
+                <viewController id="klc-Pw-ArS" customClass="CategorySearchViewController" customModule="MySearchApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="GiZ-lH-3dj">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="categoryCell" id="Dpd-mA-V3o" customClass="categoryTableViewCell" customModule="MySearchApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Dpd-mA-V3o" id="1oa-JT-CLU">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="カテゴリ名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KeP-eq-NxO">
+                                            <rect key="frame" x="16" y="11" width="87" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="KeP-eq-NxO" firstAttribute="leading" secondItem="1oa-JT-CLU" secondAttribute="leadingMargin" id="kKN-SM-U1U"/>
+                                        <constraint firstItem="KeP-eq-NxO" firstAttribute="top" secondItem="1oa-JT-CLU" secondAttribute="topMargin" id="xeC-HA-Qaa"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="categoryLabel" destination="KeP-eq-NxO" id="kOC-6k-VUY"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="カテゴリ検索" id="hZI-Nk-eYe"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Koa-uZ-AKt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1202" y="1728"/>
+        </scene>
+        <!--メニュー-->
+        <scene sceneID="ZR4-Ql-PLG">
+            <objects>
+                <viewController id="FLt-zx-ecx" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="w0f-4R-wZo">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZL8-iA-lgA">
+                                <rect key="frame" x="70" y="174" width="235" height="39"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="Q1P-AE-7zJ"/>
+                                    <constraint firstAttribute="width" constant="62" id="XJA-UB-Jjy"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="通常検索"/>
+                                <connections>
+                                    <segue destination="Ngw-mA-s9h" kind="push" id="29c-6Y-kHM"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jY7-4i-18h">
+                                <rect key="frame" x="70" y="323" width="92" height="39"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="HPt-ov-T4S"/>
+                                    <constraint firstAttribute="width" constant="92" id="xyh-8u-iqN"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="カテゴリ検索"/>
+                                <connections>
+                                    <segue destination="klc-Pw-ArS" kind="push" id="Akw-Fj-oYf"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mCW-Tj-6hh">
+                                <rect key="frame" x="70" y="472" width="77" height="39"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="77" id="DyV-Br-06L"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="kAF-q6-zQu"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="お気に入り"/>
+                                <connections>
+                                    <segue destination="1Ry-PB-Zvh" kind="push" id="0Kr-2f-NgX"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="mCW-Tj-6hh" firstAttribute="top" secondItem="jY7-4i-18h" secondAttribute="bottom" constant="110" id="A29-66-piC"/>
+                            <constraint firstItem="mCW-Tj-6hh" firstAttribute="centerX" secondItem="w0f-4R-wZo" secondAttribute="centerX" id="J0N-z8-HHq"/>
+                            <constraint firstItem="S1l-EC-MKh" firstAttribute="trailing" secondItem="ZL8-iA-lgA" secondAttribute="trailing" constant="70" id="Tcp-ID-a1a"/>
+                            <constraint firstItem="ZL8-iA-lgA" firstAttribute="centerX" secondItem="w0f-4R-wZo" secondAttribute="centerX" id="Wk5-y9-vvm"/>
+                            <constraint firstItem="ZL8-iA-lgA" firstAttribute="top" secondItem="S1l-EC-MKh" secondAttribute="top" constant="110" id="XQS-E2-cya"/>
+                            <constraint firstItem="jY7-4i-18h" firstAttribute="centerX" secondItem="w0f-4R-wZo" secondAttribute="centerX" id="c3z-oW-hP5"/>
+                            <constraint firstItem="jY7-4i-18h" firstAttribute="leading" secondItem="S1l-EC-MKh" secondAttribute="leading" constant="70" id="dS6-CY-5WM"/>
+                            <constraint firstItem="mCW-Tj-6hh" firstAttribute="leading" secondItem="S1l-EC-MKh" secondAttribute="leading" constant="70" id="eTx-zX-zAx"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="jY7-4i-18h" secondAttribute="trailing" constant="70" id="tc6-9I-LPs"/>
+                            <constraint firstItem="jY7-4i-18h" firstAttribute="top" secondItem="ZL8-iA-lgA" secondAttribute="bottom" constant="110" id="xSs-v7-psJ"/>
+                            <constraint firstItem="ZL8-iA-lgA" firstAttribute="leading" secondItem="S1l-EC-MKh" secondAttribute="leading" constant="70" id="xth-jM-Ne2"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="mCW-Tj-6hh" secondAttribute="trailing" constant="70" id="xxD-6t-kWE"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="S1l-EC-MKh"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="メニュー" id="PdW-JU-8C5"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5JN-fz-XIa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="889" y="888"/>
+        </scene>
+        <!--お気に入り-->
+        <scene sceneID="bvN-EF-dw3">
+            <objects>
+                <tableViewController id="1Ry-PB-Zvh" customClass="FavoriteViewController" customModule="MySearchApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="QPS-uC-SSm">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="favoriteItemCell" id="soB-uA-wKc">
+                                <rect key="frame" x="0.0" y="28" width="375" height="120"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="soB-uA-wKc" id="PtG-bi-oN5" customClass="ItemTableViewCell" customModule="MySearchApp" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="119.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WU0-j9-4cN">
+                                            <rect key="frame" x="10" y="10" width="100" height="100"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="100" id="0U6-6A-jgJ"/>
+                                                <constraint firstAttribute="width" constant="100" id="Y3K-Rz-ncv"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="価格" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HW0-tI-d03">
+                                            <rect key="frame" x="118" y="88.5" width="247" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="NMb-a7-xzn"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="商品名" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kcd-Aj-fQy">
+                                            <rect key="frame" x="118" y="10" width="247" height="78.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="HW0-tI-d03" secondAttribute="trailing" constant="10" id="5gv-W9-Fgb"/>
+                                        <constraint firstItem="WU0-j9-4cN" firstAttribute="leading" secondItem="PtG-bi-oN5" secondAttribute="leading" constant="10" id="SeP-Gu-ZSv"/>
+                                        <constraint firstItem="Kcd-Aj-fQy" firstAttribute="top" secondItem="WU0-j9-4cN" secondAttribute="top" id="ebo-WL-6do"/>
+                                        <constraint firstItem="HW0-tI-d03" firstAttribute="leading" secondItem="Kcd-Aj-fQy" secondAttribute="leading" id="gsX-2q-kkW"/>
+                                        <constraint firstItem="HW0-tI-d03" firstAttribute="leading" secondItem="WU0-j9-4cN" secondAttribute="trailing" constant="8" id="j4R-Ra-FmC"/>
+                                        <constraint firstAttribute="bottom" secondItem="HW0-tI-d03" secondAttribute="bottom" constant="10" id="jcj-7U-61c"/>
+                                        <constraint firstItem="HW0-tI-d03" firstAttribute="trailing" secondItem="Kcd-Aj-fQy" secondAttribute="trailing" id="mju-Mo-7pc"/>
+                                        <constraint firstItem="WU0-j9-4cN" firstAttribute="top" secondItem="PtG-bi-oN5" secondAttribute="top" constant="10" id="qkT-Jm-M4Z"/>
+                                        <constraint firstItem="HW0-tI-d03" firstAttribute="top" secondItem="Kcd-Aj-fQy" secondAttribute="bottom" id="u1R-ui-Pfr"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="1Ry-PB-Zvh" id="y37-Zi-dN0"/>
+                            <outlet property="delegate" destination="1Ry-PB-Zvh" id="tfe-RJ-1nc"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="お気に入り" id="5bj-N7-eHl"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="48d-qQ-X5Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2012" y="1727.5862068965519"/>
         </scene>
         <!--Web View Controller-->
         <scene sceneID="pVb-Jz-SC9">
@@ -377,7 +544,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ptr-Kd-pMA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2332" y="132"/>
+            <point key="canvasLocation" x="457" y="3290"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="cxm-qV-iIM">
@@ -390,7 +557,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="Ngw-mA-s9h" kind="relationship" relationship="rootViewController" id="XBe-14-FWQ"/>
+                        <segue destination="FLt-zx-ecx" kind="relationship" relationship="rootViewController" id="hp0-y3-wQO"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xv8-nP-l0F" userLabel="First Responder" sceneMemberID="firstResponder"/>
