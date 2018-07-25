@@ -20,7 +20,7 @@
 		8ACB126121046A260093F167 /* FavoriteData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACB126021046A260093F167 /* FavoriteData.swift */; };
 		8ACB126321046FA40093F167 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACB126221046FA40093F167 /* FavoriteViewController.swift */; };
 		8AEF107C20F9F1ED00E2FA25 /* CategorySearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEF107B20F9F1ED00E2FA25 /* CategorySearchViewController.swift */; };
-		8AEF108020FA31D700E2FA25 /* categoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEF107F20FA31D700E2FA25 /* categoryTableViewCell.swift */; };
+		8AEF108020FA31D700E2FA25 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEF107F20FA31D700E2FA25 /* CategoryTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,7 +39,7 @@
 		8ACB126021046A260093F167 /* FavoriteData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteData.swift; sourceTree = "<group>"; };
 		8ACB126221046FA40093F167 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		8AEF107B20F9F1ED00E2FA25 /* CategorySearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySearchViewController.swift; sourceTree = "<group>"; };
-		8AEF107F20FA31D700E2FA25 /* categoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = categoryTableViewCell.swift; sourceTree = "<group>"; };
+		8AEF107F20FA31D700E2FA25 /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,7 +84,7 @@
 				11C1D5451F9CCBF1007B53DE /* Info.plist */,
 				115F700C1FA0957F00FD16A9 /* ItemSearchResultSet.swift */,
 				115F700E1FA4560000FD16A9 /* ItemTableViewCell.swift */,
-				8AEF107F20FA31D700E2FA25 /* categoryTableViewCell.swift */,
+				8AEF107F20FA31D700E2FA25 /* CategoryTableViewCell.swift */,
 				115F70121FA4774500FD16A9 /* WebViewController.swift */,
 				8ACB126021046A260093F167 /* FavoriteData.swift */,
 			);
@@ -166,7 +166,7 @@
 				8ACB126321046FA40093F167 /* FavoriteViewController.swift in Sources */,
 				8AEF107C20F9F1ED00E2FA25 /* CategorySearchViewController.swift in Sources */,
 				115F70111FA457FF00FD16A9 /* SearchItemTableViewController.swift in Sources */,
-				8AEF108020FA31D700E2FA25 /* categoryTableViewCell.swift in Sources */,
+				8AEF108020FA31D700E2FA25 /* CategoryTableViewCell.swift in Sources */,
 				115F70131FA4774500FD16A9 /* WebViewController.swift in Sources */,
 				115F700F1FA4560000FD16A9 /* ItemTableViewCell.swift in Sources */,
 				8ACB126121046A260093F167 /* FavoriteData.swift in Sources */,

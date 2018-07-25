@@ -34,6 +34,11 @@ class FavoriteViewController: UITableViewController {
             }
         }
         
+        // テーブルの描画処理を実施
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -42,10 +47,12 @@ class FavoriteViewController: UITableViewController {
     
     // ビューが表示される直前に呼ばれる
     override func viewWillAppear(_ animated: Bool) {
-        // テーブルの描画処理を実施
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
+        
+    }
+    
+    // セクション内の商品数を取得
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
     }
     
     // MARK: - Table view data source
@@ -56,12 +63,12 @@ class FavoriteViewController: UITableViewController {
                 return UITableViewCell()
         }
         // 商品のタイトル設定
-        cell.itemTitleLabel.text = itemData.name
+        cell.favoriteItemTitleLabel.text = itemData.name
         // 商品価格設定処理（日本通貨の形式で設定する）
         let number = NSNumber(integerLiteral: Int(itemData.price!)!)
-        cell.itemPriceLabel.text = priceFormat.string(from: number)
+        cell.favoriteItemPriceLabel.text = priceFormat.string(from: number)
         // 商品のURL設定
-        cell.itemUrl = itemData.url
+        cell.favoriteItemUrl = itemData.url
         // 画像の設定処理
         // すでにセルに設定されている画像と同じかどうかチェックする
         // 画像がまだ設定されていない場合に処理を行う
@@ -73,7 +80,7 @@ class FavoriteViewController: UITableViewController {
         if let cacheImage = imageCache.object(forKey: itemImageUrl as
             AnyObject) {
             // キャッシュ画像の設定
-            cell.itemImageView.image = cacheImage
+            cell.favoriteItemImageView.image = cacheImage
             return cell
         }
         // キャッシュの画像がないためダウンロードする
@@ -102,13 +109,24 @@ class FavoriteViewController: UITableViewController {
             self.imageCache.setObject(image, forKey: itemImageUrl as AnyObject)
             // 画像はメインスレッド上で設定する
             DispatchQueue.main.async {
-                cell.itemImageView.image = image
+                cell.favoriteItemImageView.image = image
             }
         }
         // 画像の読み込み処理開始
         task.resume()
         
         return cell
+    }
+    
+    // 商品をタップして次の画面に遷移する前の処理
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let cell = sender as? ItemTableViewCell {
+            if let webViewController =
+                segue.destination as? WebViewController {
+                // 商品ページのURLを設定する
+                webViewController.itemUrl = cell.favoriteItemUrl
+            }
+        }
     }
     
 }

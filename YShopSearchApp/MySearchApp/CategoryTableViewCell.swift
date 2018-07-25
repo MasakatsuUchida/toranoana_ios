@@ -1,6 +1,6 @@
 import UIKit
 
-class categoryTableViewCell: UITableViewCell {
+class CategoryTableViewCell: UITableViewCell {
 
     @IBOutlet weak var categoryLabel: UILabel!
     

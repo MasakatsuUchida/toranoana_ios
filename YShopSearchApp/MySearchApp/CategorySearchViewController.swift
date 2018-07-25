@@ -22,6 +22,8 @@ class CategorySearchViewController: UITableViewController {
 
         // Do any additional setup after loading the view.
         let userDefaults = UserDefaults.standard
+        
+        categoryDataArray.removeAll()
         // カテゴリ検索フラグ
         userDefaults.set("category", forKey: "search")
         
@@ -125,7 +127,6 @@ class CategorySearchViewController: UITableViewController {
             // テーブルの描画処理を実施
             DispatchQueue.main.async {
                 self.tableView.reloadData()
-                
             }
         }
         // 通信開始
@@ -147,7 +148,7 @@ class CategorySearchViewController: UITableViewController {
     // テーブルセルの取得処理
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier:
-            "categoryCell", for: indexPath) as? categoryTableViewCell else {
+            "categoryCell", for: indexPath) as? CategoryTableViewCell else {
                 return UITableViewCell()
         }
         let categoryData = categoryDataArray[indexPath.row]
@@ -159,7 +160,7 @@ class CategorySearchViewController: UITableViewController {
     
     // 商品をタップして次の画面に遷移する前の処理
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let cell = sender as? categoryTableViewCell {
+        if let cell = sender as? CategoryTableViewCell {
             // TODO 処理追加
             
         }
