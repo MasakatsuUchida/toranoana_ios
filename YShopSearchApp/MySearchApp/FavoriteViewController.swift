@@ -11,7 +11,7 @@ import UIKit
 
 class FavoriteViewController: UITableViewController {
     
-    var itemData = FavoriteData()
+    var favoriteItemList = [FavoriteData]()
     
     var imageCache = NSCache<AnyObject, UIImage>()
     
@@ -29,8 +29,8 @@ class FavoriteViewController: UITableViewController {
         
         // デシリアライズ処理
         if let storedData = userDefaults.object(forKey: "favorite") as? Data {
-            if let unarchivedData = NSKeyedUnarchiver.unarchiveObject(with: storedData) as? FavoriteData {
-                itemData = unarchivedData
+            if let unarchivedData = NSKeyedUnarchiver.unarchiveObject(with: storedData) as? [FavoriteData] {
+                favoriteItemList.append(contentsOf: unarchivedData)
             }
         }
         
@@ -50,9 +50,30 @@ class FavoriteViewController: UITableViewController {
         
     }
     
+    // セルが編集可能であるかどうかを返却する
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    // セルを削除したときの処理
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        // 削除処理かどうか
+        if editingStyle == UITableViewCellEditingStyle.delete {
+            // リストから削除
+            favoriteItemList.remove(at: indexPath.row)
+            // セルを削除
+            tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.fade)
+            // データを保存
+            let archiveData: Data = NSKeyedArchiver.archivedData(withRootObject: favoriteItemList)
+            let userDefaults = UserDefaults.standard
+            userDefaults.set(archiveData, forKey: "favorite")
+            userDefaults.synchronize()
+        }
+    }
+    
     // セクション内の商品数を取得
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return favoriteItemList.count
     }
     
     // MARK: - Table view data source
@@ -62,17 +83,18 @@ class FavoriteViewController: UITableViewController {
             "favoriteItemCell", for: indexPath) as? ItemTableViewCell else {
                 return UITableViewCell()
         }
+        let favoriteItem = favoriteItemList[indexPath.row]
         // 商品のタイトル設定
-        cell.favoriteItemTitleLabel.text = itemData.name
+        cell.favoriteItemTitleLabel.text = favoriteItem.name
         // 商品価格設定処理（日本通貨の形式で設定する）
-        let number = NSNumber(integerLiteral: Int(itemData.price!)!)
+        let number = NSNumber(integerLiteral: Int(favoriteItem.price!)!)
         cell.favoriteItemPriceLabel.text = priceFormat.string(from: number)
         // 商品のURL設定
-        cell.favoriteItemUrl = itemData.url
+        cell.favoriteItemUrl = favoriteItem.url
         // 画像の設定処理
         // すでにセルに設定されている画像と同じかどうかチェックする
         // 画像がまだ設定されていない場合に処理を行う
-        guard let itemImageUrl = itemData.image else {
+        guard let itemImageUrl = favoriteItem.image else {
             // 画像なし商品
             return cell
         }

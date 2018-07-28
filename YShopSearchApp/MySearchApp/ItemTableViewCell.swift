@@ -5,12 +5,12 @@ class ItemTableViewCell: UITableViewCell {
     @IBOutlet weak var itemTitleLabel: UILabel!    // 商品タイトル
     @IBOutlet weak var itemPriceLabel: UILabel!    // 商品価格
     
-    @IBOutlet weak var favoriteItemImageView: UIImageView!
-    @IBOutlet weak var favoriteItemPriceLabel: UILabel!
-    @IBOutlet weak var favoriteItemTitleLabel: UILabel!
+    @IBOutlet weak var favoriteItemImageView: UIImageView!  // お気に入り画像
+    @IBOutlet weak var favoriteItemPriceLabel: UILabel!     // お気に入り価格
+    @IBOutlet weak var favoriteItemTitleLabel: UILabel!     //お気に入りタイトル
     
     var itemUrl: String? // 商品ページのURL。遷移先の画面で利用する
-    var favoriteItemUrl: String?
+    var favoriteItemUrl: String? // お気に入りページのURL。遷移先の画面で利用する
     
     override func awakeFromNib() {
         super.awakeFromNib()

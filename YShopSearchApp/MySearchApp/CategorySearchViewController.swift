@@ -10,7 +10,7 @@ import UIKit
 
 class CategorySearchViewController: UITableViewController {
     
-    var categoryDataArray =  [ItemData]()
+    var categoryDataArray =  [CategoryData]()
     
     // APIを利用するためのクライアントID
     let appid = "dj00aiZpPWw0SzRCekE2SmJCMSZzPWNvbnN1bWVyc2VjcmV0Jng9ZmY-"
@@ -21,6 +21,9 @@ class CategorySearchViewController: UITableViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         let userDefaults = UserDefaults.standard
         
         categoryDataArray.removeAll()
@@ -116,9 +119,9 @@ class CategorySearchViewController: UITableViewController {
             
             do {
                 // パース実施
-                let resultSet = try JSONDecoder().decode(ItemSearchResultSet.self, from: data)
+                let resultSet = try JSONDecoder().decode(CategorySearchResultSet.self, from: data)
                 // 商品のリストに追加
-                self.categoryDataArray.append(contentsOf: resultSet.resultSet.firstObject.result.items)
+                self.categoryDataArray.append(contentsOf: resultSet.resultSet2.firstObject2.result2.categories.children.categories)
                 
             } catch let error {
                 print("## error: \(error)")
@@ -153,7 +156,8 @@ class CategorySearchViewController: UITableViewController {
         }
         let categoryData = categoryDataArray[indexPath.row]
         // カテゴリのlabel設定
-        cell.categoryLabel.text = categoryData.name
+        cell.categoryLabel.text = categoryData.titleInfo.short
+        cell.categoryIdLabel.text = categoryData.id
         
         return cell
     }
@@ -161,8 +165,13 @@ class CategorySearchViewController: UITableViewController {
     // 商品をタップして次の画面に遷移する前の処理
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let cell = sender as? CategoryTableViewCell {
-            // TODO 処理追加
-            
+            if let id = cell.categoryIdLabel.text {
+                let userDefaults = UserDefaults.standard
+                // カテゴリ検索フラグ
+                userDefaults.set("category", forKey: "search")
+                userDefaults.set(id, forKey: "c_id")
+                userDefaults.synchronize()
+            }
         }
     }
 

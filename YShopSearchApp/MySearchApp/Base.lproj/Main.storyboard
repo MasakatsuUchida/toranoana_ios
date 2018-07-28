@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="　最低価格" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qdo-Vg-VzU">
-                                <rect key="frame" x="0.0" y="175" width="87" height="20.5"/>
+                                <rect key="frame" x="0.0" y="175" width="139" height="20.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="87" id="GMB-My-otD"/>
                                 </constraints>
@@ -28,7 +28,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="　最高価格" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GWo-CS-maI">
-                                <rect key="frame" x="0.0" y="281" width="87" height="20.5"/>
+                                <rect key="frame" x="0.0" y="281" width="139" height="20.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="87" id="1WK-6r-2P6"/>
                                 </constraints>
@@ -40,7 +40,7 @@
                                 <rect key="frame" x="148" y="432.5" width="51" height="41.5"/>
                             </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="　送料" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dvQ-gb-afy">
-                                <rect key="frame" x="0.0" y="493" width="87" height="20.5"/>
+                                <rect key="frame" x="0.0" y="493" width="139" height="20.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="87" id="gIK-7c-5oi"/>
                                 </constraints>
@@ -72,7 +72,7 @@
                                 </constraints>
                             </pickerView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="P9C-YB-NXX">
-                                <rect key="frame" x="10" y="117.5" width="67" height="30"/>
+                                <rect key="frame" x="10" y="117.5" width="119" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="25" id="pIM-IA-xzw"/>
                                 </constraints>
@@ -81,7 +81,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="　在庫" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jlR-Dd-RMm">
-                                <rect key="frame" x="0.0" y="387" width="87" height="20.5"/>
+                                <rect key="frame" x="0.0" y="387" width="139" height="20.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="52" id="cI4-iI-7pc"/>
                                 </constraints>
@@ -349,15 +349,22 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="categoryCell" id="Dpd-mA-V3o" customClass="CategoryTableViewCell" customModule="MySearchApp" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="categoryCell" id="Dpd-mA-V3o" customClass="CategoryTableViewCell" customModule="MySearchApp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Dpd-mA-V3o" id="1oa-JT-CLU">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="カテゴリ名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KeP-eq-NxO">
                                             <rect key="frame" x="16" y="11" width="87" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="id" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1La-Yf-Uku">
+                                            <rect key="frame" x="345" y="11" width="14" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -369,7 +376,9 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="categoryIdLabel" destination="1La-Yf-Uku" id="RXR-zR-uS1"/>
                                     <outlet property="categoryLabel" destination="KeP-eq-NxO" id="kOC-6k-VUY"/>
+                                    <segue destination="Ngw-mA-s9h" kind="push" id="DKb-3I-CcV"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -389,7 +398,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZL8-iA-lgA">
-                                <rect key="frame" x="70" y="174" width="90" height="39"/>
+                                <rect key="frame" x="70" y="174" width="235" height="39"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="Q1P-AE-7zJ"/>
                                     <constraint firstAttribute="width" constant="62" id="XJA-UB-Jjy"/>
@@ -574,5 +583,6 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="9YK-nr-h1a"/>
+        <segue reference="29c-6Y-kHM"/>
     </inferredMetricsTieBreakers>
 </document>

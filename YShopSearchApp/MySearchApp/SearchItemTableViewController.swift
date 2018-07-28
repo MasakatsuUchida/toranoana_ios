@@ -3,6 +3,8 @@ import UIKit
 class SearchItemTableViewController: UITableViewController, UISearchBarDelegate, UIGestureRecognizerDelegate {
     
     var itemDataArray =  [ItemData]()
+    // お気に入りデータ
+    var favoriteItemList = [FavoriteData]()
     
     var imageCache = NSCache<AnyObject, UIImage>()
     @IBOutlet weak var keywordSearchBar: UISearchBar!
@@ -21,6 +23,15 @@ class SearchItemTableViewController: UITableViewController, UISearchBarDelegate,
         // 価格のフォーマット指定
         priceFormat.numberStyle = .currency
         priceFormat.currencyCode = "JPY"
+        
+        let userDefaults = UserDefaults.standard
+        
+        // デシリアライズ処理
+        if let storedData = userDefaults.object(forKey: "favorite") as? Data {
+            if let unarchivedData = NSKeyedUnarchiver.unarchiveObject(with: storedData) as? [FavoriteData] {
+                favoriteItemList.append(contentsOf: unarchivedData)
+            }
+        }
         
         // ロングプレス
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(SearchItemTableViewController.longPress(_:)))
@@ -91,10 +102,16 @@ class SearchItemTableViewController: UITableViewController, UISearchBarDelegate,
                 // 保持している商品をいったん削除
                 itemDataArray.removeAll()
                 
-                entryUrl = "https://shopping.yahooapis.jp/ShoppingWebService/V1/json/categorySearch"
-                
                 // パラメータを指定する
-                let parameter = ["appid": appid, "category_id": "13457"]
+                var parameter = ["appid": appid]
+                
+                if let value = userDefaults.string(forKey: "c_id") {
+                    if value.isEmpty {
+                        return
+                    } else {
+                        parameter.updateValue(value, forKey: "category_id")
+                    }
+                }
                 
                 // パラメータをエンコードしたURLを作成する
                 let requestUrl = createRequestUrl(parameter: parameter)
@@ -103,7 +120,9 @@ class SearchItemTableViewController: UITableViewController, UISearchBarDelegate,
                 request(requestUrl: requestUrl)
             }
         }
+        // 検索条件のクリア
         userDefaults.set("", forKey: "search")
+        userDefaults.set("", forKey: "category")
         userDefaults.synchronize()
     }
     
@@ -329,21 +348,35 @@ class SearchItemTableViewController: UITableViewController, UISearchBarDelegate,
             
         } else if sender.state == UIGestureRecognizerState.began  {
             // 長押しされた場合の処理
-            print("長押しされたcellのindexPath:\(String(describing: indexPath?.row))")
             
             let userDefaults = UserDefaults.standard
-            // お気に入りデータ
-            let data = FavoriteData()
-            let itemData = itemDataArray[(indexPath?.row)!]
             
-            data.name = itemData.name
-            data.image = itemData.imageInfo.medium
-            data.price = itemData.priceInfo.price
-            data.url = itemData.url
+            if let row = indexPath?.row {
+                let itemData = itemDataArray[row]
+                let favoriteData = FavoriteData()
+                favoriteData.name = itemData.name
+                favoriteData.image = itemData.imageInfo.medium
+                favoriteData.price = itemData.priceInfo.price
+                favoriteData.url = itemData.url
+                print("長押しされたcellのindexPath:\(row)")
+                
+                self.favoriteItemList.insert(favoriteData, at: 0)
+                
+            }
             
-            let archiveData = NSKeyedArchiver.archivedData(withRootObject: data)
+            let archiveData = NSKeyedArchiver.archivedData(withRootObject: favoriteItemList)
             userDefaults.set(archiveData, forKey: "favorite")
             userDefaults.synchronize()
+            
+            // アラートダイアログを生成
+            let alertController = UIAlertController(title: "お気に入り", message: "お気に入りに追加しました", preferredStyle: UIAlertControllerStyle.alert)
+            
+            // OKボタンがタップされたときの処理
+            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil)
+            alertController.addAction(okAction)
+            // アラートダイアログを表示
+            present(alertController, animated: true, completion: nil)
+            
         }
     }
 }
